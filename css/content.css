@@ -1,0 +1,792 @@
+/* Universal Styles & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+:root {
+    /* Define a color palette for consistency */
+    --primary-color: #007bff; /* A nice blue, similar to what 'heading-color' might imply */
+    --secondary-color: #6c757d; /* Grey for text */
+    --light-bg: #f8f9fa; /* Light background for sections */
+    --dark-text: #343a40; /* Darker text */
+    --white: #ffffff;
+    --heading-font: 'Poppins', sans-serif; /* Changed to Poppins */
+    --body-font: 'Lato', sans-serif; /* Changed to Lato */
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+    color: var(--dark-text);
+    background-color: var(--white);
+    overflow-x: hidden; /* Prevent horizontal scrollbar caused by off-screen elements */
+}
+
+img {
+    max-width: 100%; /* Ensure all images are responsive */
+    height: auto; /* Maintain aspect ratio by default */
+    display: block; /* Remove extra space below images */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--heading-font);
+    color: var(--dark-text);
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.4rem; }
+p { margin-bottom: 1rem; }
+
+#heading-color {
+    color: var(--primary-color);
+}
+
+hr {
+    border: none;
+    border-top: 2px solid var(--primary-color);
+    width: 80px; /* Small line under headings */
+    margin: 1rem auto 2rem; /* Centered */
+}
+
+/* Reusable Components */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background: #0056b3; /* Darker shade on hover */
+}
+
+/* Topbar/Header Styles */
+#topbar {
+    background-color: var(--white);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between; /* Distributes logo to left, header-right-content to right */
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top of other content */
+}
+
+#logo {
+    flex-shrink: 0; /* Prevent logo from shrinking */
+    margin-right: 20px; /* Space between logo and other content */
+}
+
+#logo img {
+    height: 50px; /* Adjust logo size */
+    max-width: 100%; /* Ensure responsiveness */
+}
+
+.header-right-content { /* New wrapper for nav and social */
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between nav and social icons */
+    flex-grow: 1; /* Allows this combined section to take available space */
+    justify-content: flex-end; /* Pushes nav and social to the right within this wrapper */
+    flex-wrap: wrap; /* Allow nav and social to wrap if space is tight */
+}
+
+#topbar nav {
+    /* No flex-grow here, it's handled by .header-right-content */
+}
+
+#topbar nav ul {
+    display: flex;
+    justify-content: flex-end; /* Align nav items to the right within the nav container */
+    gap: 25px;
+}
+
+#topbar nav ul li a {
+    color: var(--dark-text);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+#topbar nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+#topbar nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+#topbar nav ul li a:hover::after {
+    width: 100%;
+}
+
+#social {
+    flex-shrink: 0; /* Prevent social icons from shrinking */
+    display: flex; /* Make social icons align horizontally */
+    align-items: center;
+}
+#social .social_media {
+    display: flex;
+    gap: 15px;
+}
+
+/* Font Awesome Icon Styling */
+#social .social_media li i {
+    font-size: 25px; /* Size for Font Awesome icons */
+    color: var(--dark-text); /* Color for icons */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#social .social_media li i:hover {
+    color: var(--primary-color); /* Change color on hover */
+    transform: scale(1.1);
+}
+
+
+/* Hero Section */
+#hero-section {
+    background-color: var(--light-bg);
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#hero-section #hero-image {
+    display: flex;
+    flex-direction: row; /* Default for larger screens */
+    align-items: center;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 40px; /* Space between image and content */
+}
+
+#hero-section #hero-image img {
+    width: 450px; /* Fixed width for consistency */
+    height: 450px; /* Fixed height for consistency */
+    object-fit: contain; /* Ensures entire image is visible within the fixed dimensions */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#hero-section #hero-content {
+    max-width: 45%;
+    padding: 20px;
+    text-align: left;
+}
+
+#hero-section #hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+#hero-section #hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: var(--secondary-color);
+}
+
+/* Section Dividers (Slopes) */
+.section-divider {
+    position: relative;
+    width: 100%;
+    height: 80px; /* Height of the slope */
+    z-index: 1; /* Ensure it's above other content if needed */
+}
+
+.slope-bottom {
+    background-color: var(--light-bg); /* Background of the section above it */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0); /* Creates a bottom-left to top-right slope */
+    /* Adjust polygon coordinates if you want different slope angles */
+}
+
+.slope-top {
+    background-color: var(--white); /* Background of the section above it */
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 100%); /* Creates a top-left to bottom-right slope */
+    /* Adjust polygon coordinates if you want different slope angles */
+}
+
+/* About Us Section */
+#about_us {
+    background-color: var(--white);
+    padding: 80px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 40px; /* Space between image and content */
+}
+
+#about_us img {
+    width: 450px; /* Fixed width for consistency */
+    height: 450px; /* Fixed height for consistency */
+    object-fit: contain; /* Ensures entire image is visible within the fixed height */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#about_us #about_content {
+    max-width: 50%;
+    text-align: left;
+    padding: 20px;
+}
+
+#about_us #about_content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#about_us #about_content h4 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+#about_us #about_content #about_content2 {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Our Services Section */
+#our_services {
+    background-color: var(--light-bg);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+#our_services h2 {
+    font-size: 2.5rem;
+}
+
+#our_services h4 {
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns per row */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.service-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Use flex for content alignment within item */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align content to top */
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.service-item img {
+    height: 80px; /* Fixed height for service icons */
+    width: 80px;  /* Fixed width for service icons */
+    margin-bottom: 15px;
+    object-fit: contain; /* Ensure icons fit within the fixed dimensions */
+}
+
+.service-item p {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem; /* Reduce margin for title */
+}
+
+.service-item small {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    flex-grow: 1; /* Allow small text to take available space */
+}
+
+/* Testimonials Section */
+#testimonials {
+    background-color: var(--white);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+#testimonials h2 {
+    font-size: 2.5rem;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+}
+
+.testimonial-item {
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.testimonial-item p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--dark-text);
+}
+
+.testimonial-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0;
+}
+
+/* Promos/Newsletter Section */
+#promos {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#promos #headline {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    font-family: var(--heading-font);
+}
+
+#promos form {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of form elements */
+    justify-content: center;
+    gap: 15px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#promos form input[type="text"],
+#promos form input[type="email"] {
+    flex: 1; /* Allow inputs to grow */
+    min-width: 250px; /* Minimum width for inputs */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#promos form button {
+    background-color: var(--dark-text);
+    color: var(--white);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#promos form button:hover {
+    background-color: #495057; /* Slightly lighter dark */
+}
+
+/* Footer Section */
+footer {
+    background-color: var(--dark-text);
+    color: var(--white);
+    padding: 60px 20px; /* Increased vertical padding */
+    text-align: center;
+    border-top: 5px solid var(--primary-color); /* Added a top border */
+}
+
+#footer-content {
+    max-width: 1200px; /* Constrain content width */
+    margin: 0 auto; /* Center content within footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Space between logo, copyright, and links */
+}
+
+#footer-content img {
+    height: 70px; /* Slightly larger footer logo */
+    margin-bottom: 0; /* Reset margin as gap handles it */
+}
+
+#footer-content p {
+    font-size: 1rem; /* Slightly larger copyright text */
+    margin-top: 0; /* Reset margin as gap handles it */
+    margin-bottom: 0; /* Ensure no extra margin */
+}
+
+.footer-links {
+    display: flex; /* Use flex for links */
+    flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+    justify-content: center; /* Center links */
+    gap: 15px; /* Space between links */
+    margin-top: 10px; /* Space above links */
+}
+
+.footer-links a {
+    color: var(--white);
+    font-size: 0.95rem; /* Slightly larger link text */
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: var(--primary-color); /* Change color on hover */
+    text-decoration: underline;
+}
+
+/* Contact Us Section Styles */
+#contact_us {
+    background-color: var(--white);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+#contact_us .contact-intro {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+.contact-form {
+    max-width: 600px;
+    width: 100%; /* Ensure it takes full width up to max-width */
+    margin: 0 auto; /* This centers the form */
+    background-color: var(--light-bg);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form .form-group {
+    text-align: left;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--body-font);
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 120px;
+}
+
+.contact-form button {
+    width: auto; /* Allow button to size based on content */
+    align-self: center; /* Center the button within the flex container */
+    margin-top: 10px;
+}
+
+/* Honeypot field - visually hidden */
+.honeypot-field {
+    position: absolute;
+    left: -9999px; /* Move off-screen */
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none; /* Prevent interaction */
+}
+
+/* Form messages */
+.form-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* --- Responsive Design (Media Queries) --- */
+
+/* Tablet & Smaller Desktops (e.g., up to 1024px) */
+@media (max-width: 1024px) {
+    #topbar nav ul {
+        gap: 20px;
+    }
+
+    #hero-section #hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    #hero-section #hero-image img,
+    #hero-section #hero-content {
+        max-width: 90%; /* Allow content/image to take more width */
+    }
+
+    /* Adjust fixed image sizes for tablets */
+    #hero-section #hero-image img,
+    #about_us img {
+        width: 350px; /* Adjusted width for tablets */
+        height: 350px; /* Adjusted height for tablets */
+    }
+}
+
+/* Tablets (e.g., 768px and below) */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.6rem; }
+    h4 { font-size: 1.2rem; }
+
+    /* Header adjustments */
+    #topbar {
+        flex-direction: column; /* Stack logo, nav, social vertically */
+        align-items: center;
+        padding: 15px 10px;
+    }
+    
+    #logo {
+        margin-right: 0; /* Remove margin when stacked */
+        margin-bottom: 15px; /* Add space below logo */
+    }
+
+    .header-right-content {
+        flex-direction: column; /* Stack nav and social vertically */
+        width: 100%; /* Take full width to center content */
+        gap: 20px;
+        justify-content: center; /* Center content when stacked */
+    }
+
+    #topbar nav {
+        margin: 0; /* Remove margin, gap from parent handles it */
+    }
+
+    #topbar nav ul {
+        flex-direction: column; /* Stack nav links */
+        text-align: center;
+        gap: 10px;
+    }
+    
+    #topbar nav ul li a {
+        padding: 5px 10px;
+    }
+
+    /* Hero section - stack content */
+    #hero-section {
+        padding: 60px 0;
+    }
+    #hero-section #hero-image {
+        flex-direction: column; /* Stack image and content */
+        text-align: center;
+        padding: 0 15px;
+        gap: 30px;
+    }
+    
+    #hero-section #hero-image img {
+        max-width: 80%; /* Image takes more width */
+        height: 300px; /* Adjusted height for tablets */
+        width: 300px; /* Adjusted width for tablets */
+        margin-bottom: 0; /* Gap handles spacing */
+    }
+    
+    #hero-section #hero-content {
+        max-width: 90%;
+        text-align: center;
+        padding: 0;
+    }
+
+    /* About Us section - stack content */
+    #about_us {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 15px;
+        gap: 30px;
+    }
+
+    #about_us img {
+        max-width: 80%;
+        height: 300px; /* Adjusted height for tablets */
+        width: 300px; /* Adjusted width for tablets */
+        margin-right: 0; /* Gap handles spacing */
+        margin-bottom: 0;
+    }
+
+    #about_us #about_content {
+        max-width: 90%;
+        padding: 0;
+    }
+
+    /* Services Grid */
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller min-width for columns */
+        padding: 0 15px;
+    }
+
+    /* Testimonials Grid */
+    .testimonials-grid {
+        grid-template-columns: 1fr; /* Single column on tablets */
+        padding: 0 15px;
+    }
+
+    /* Promos Section */
+    #promos #headline {
+        font-size: 1.8rem;
+    }
+
+    #promos form {
+        flex-direction: column; /* Stack inputs and button */
+        align-items: center;
+    }
+
+    #promos form input {
+        min-width: unset; /* Remove min-width to allow full width */
+        width: 80%; /* Or a specific max-width */
+        max-width: 350px; /* Example max width for inputs */
+    }
+    #promos form button {
+        width: 80%;
+        max-width: 350px;
+    }
+
+    /* Contact Form responsiveness */
+    .contact-form {
+        padding: 30px 20px;
+    }
+}
+
+/* Mobile Phones (e.g., 480px and below) */
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.4rem; }
+    h4 { font-size: 1.1rem; }
+    p { font-size: 0.95rem; }
+
+    #topbar {
+        padding: 10px;
+    }
+    #logo img {
+        height: 40px;
+    }
+
+    #topbar nav ul {
+        gap: 8px;
+    }
+    #topbar nav ul li a {
+        font-size: 1rem;
+    }
+
+    #social .social_media li i { /* Targeting Font Awesome icons */
+        font-size: 20px; /* Smaller size for mobile */
+    }
+
+    #hero-section {
+        padding: 50px 0;
+    }
+
+    #hero-section #hero-image img {
+        height: 200px; /* Adjusted height for mobile */
+        width: 200px; /* Adjusted width for mobile */
+    }
+
+    #hero-section #hero-content h1 {
+        font-size: 2.5rem;
+    }
+    #hero-section #hero-content p {
+        font-size: 1rem;
+    }
+
+    #about_us, #our_services, #testimonials, #promos, footer {
+        padding: 50px 15px; /* Reduce padding for smaller screens */
+    }
+
+    #about_us img {
+        height: 200px; /* Adjusted height for mobile */
+        width: 200px; /* Adjusted width for mobile */
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr; /* Single column layout on very small screens */
+    }
+
+    #promos #headline {
+        font-size: 1.5rem;
+    }
+}
